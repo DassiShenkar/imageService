@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://gd_admin:fuckthecloud@ds019063.mlab.com:19063/images');
-var imageShcema = require('image_shcema');
+var imageShcema = require('./image_schema');
 var EventEmitter = require('events').EventEmitter;
 var eventsConfig = require('./config').events;
 
@@ -10,7 +10,6 @@ class ImageQuery extends EventEmitter {
 	constructor() {
 		super();
 		this.data = null;
-	}
 
 	this.on(eventsConfig.GET_ALL, function() {
 		mongoose.connection.once('open', function(){
@@ -24,7 +23,7 @@ class ImageQuery extends EventEmitter {
 		});
 	});
 
-		this.on(eventsConfig.GET_IMAGE_BY_COLOR, function(color) {
+	this.on(eventsConfig.GET_IMAGE_BY_COLOR, function(color) {
 		mongoose.connection.once('open', function(){
 			imageShcema.find().where('dominantColor').equals(color).exec(function(err, data){
 				console.log("connected to mongoDB");
@@ -75,6 +74,7 @@ class ImageQuery extends EventEmitter {
 			}); 
 		});
 	});
+}
 
 	getAll() {
 		this.emit(eventsConfig.GET_ALL);

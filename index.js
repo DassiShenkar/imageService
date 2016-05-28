@@ -5,6 +5,7 @@ server.use(restify.queryParser());
 var imageData;
 var imageQuery = require('./image_api');
 var images = new imageQuery();
+var port = process.env.PORT || 3000;
 
 server.get("/image/", function (req, res){
 	imageData = images.getAll();
@@ -61,6 +62,10 @@ server.del("/image/:id", function (req, res){
 	}
 });
 
-server.listen(8080, function() {
+server.get('*', function(req, res) {
+	res.sendFile(__dirname + '/index.html');
+});
+
+server.listen(port, function() {
   console.log('%s listening at %s', server.name, server.url);
 });

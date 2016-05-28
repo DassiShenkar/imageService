@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'),
 	schema = mongoose.Schema,
-	imageSchema;
+	Image;
 
-var schema_name = new schema({
+var imageSchema = new schema({
 	title: String,
 	creator: String,
 	originalImageUrl: String,
@@ -11,6 +11,6 @@ var schema_name = new schema({
 	dominantColor: String
 }, {collection: 'images'});
 
-imagesSchema = mongoose.model('imagesSchema', schema_name);
+Image = mongoose.model('Image', imageSchema);
 
-module.exports = imagesSchema;
+module.exports = Image;
