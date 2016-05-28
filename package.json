@@ -9,7 +9,8 @@
   "author": "Gregory Kondratenko",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4",
-    "mongoose": "^4.4.19"
+    "moment": "^2.13.0",
+    "mongoose": "^4.4.19",
+    "restify": "^4.1.0"
   }
 }
