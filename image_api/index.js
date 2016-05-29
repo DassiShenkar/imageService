@@ -12,7 +12,9 @@ class ImageQuery extends EventEmitter {
 		this.data = null;
 
 	this.on(eventsConfig.GET_ALL, function() {
-		mongoose.connection.once('open', function(){
+		console.log("get all");
+		db.connection.once('open', function(){
+			console.log("connecting");
 			imageShcema.find({}, function(err, data){
 				console.log("connected to mongoDB");
 				if(err == null){

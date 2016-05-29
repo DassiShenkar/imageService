@@ -9,6 +9,7 @@ var port = process.env.PORT || 3000;
 
 server.get("/image/", function (req, res){
 	imageData = images.getAll();
+	console.log(imageData);
 	if(imageData == null){
 		res.send(404, {error:"No images found"});
 	}
@@ -62,9 +63,9 @@ server.del("/image/:id", function (req, res){
 	}
 });
 
-server.get('*', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
-});
+server.get(/\/public\/?.*/, restify.serveStatic({
+	directory: __dirname
+}));
 
 server.listen(port, function() {
   console.log('%s listening at %s', server.name, server.url);
